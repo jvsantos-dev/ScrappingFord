@@ -1,10 +1,9 @@
 from playwright.sync_api import sync_playwright
 
-class ScrappingWright:
-    def __init__(self):
-        ...
 veiculos = []
 nada2 = []
+
+
 with sync_playwright() as p:
     browser = p.chromium.launch(headless=False)
     page = browser.new_page()
@@ -29,6 +28,9 @@ with sync_playwright() as p:
 for i in nada2:
     try:
         url = "https://www.ford.com.br/picapes/ranger/"
+    except Exception as e:
+        print(e)
 
 # '<span class="font-medium">Picapes</span>'
 # Sol#47Marte!Rio
+

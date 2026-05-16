@@ -6,6 +6,7 @@ from sqlalchemy.orm import Session, sessionmaker
 from .schemas import CarSchema
 load_dotenv()
 senha = os.getenv('SENHA')
+# Mudar depois para o novo depois de testar tudo
 # DATABASE_URL = f"postgresql://postgres:{senha}@db.cpjpjsrqblymmnbpiiho.supabase.co:5432/postgres"
 DATABASE_URL = F"sqlite:///database.db"
 engine = create_engine(DATABASE_URL)
@@ -52,3 +53,5 @@ class DataBase:
         session.delete(car_id)
         session.commit()
         session.close()
+
+    
