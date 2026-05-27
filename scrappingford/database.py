@@ -7,12 +7,8 @@ from .schemas import CarSchema
 load_dotenv()
 senha = os.getenv('SENHA')
 # Mudar depois para o novo depois de testar tudo
-# DATABASE_URL = f"postgresql://postgres:{senha}@db.cpjpjsrqblymmnbpiiho.supabase.co:5432/postgres"
-DATABASE_URL = F"sqlite:///database.db"
-engine = create_engine(DATABASE_URL)
-
 class DataBase:
-    def __init__(self, database_url:str = 'sqlite:///database.db'):
+    def __init__(self, database_url:str = f'postgresql://postgres:{senha}@db.cpjpjsrqblymmnbpiiho.supabase.co:5432/postgres'):
         self.engine = create_engine(database_url)
         self.SessionLocal = sessionmaker(bind=self.engine)
 
@@ -31,14 +27,17 @@ class DataBase:
     def execute(self, sql: str):
         session = self.SessionLocal()
         try:
-            self.engine.connection.execute(text(sql))
+            result = session.execute(text(sql))
             session.commit()
+            return result.fetchall()
+        
         except Exception as e:
+            session.rollback()
             print(e)
-        else:
-            session.commit()
-        session.close()
-    
+            
+        finally:
+            session.close()
+
 
     def update(self, car_id, car: CarSchema, table):
         session = self.SessionLocal()

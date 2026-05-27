@@ -7,12 +7,12 @@ brands = [
     "Toyota",
     "Honda",
     "Chevrolet",
-    "Nissan",
-    "Hyundai",
-    "Kia",
-    "Volkswagen",
-    "Jeep",
-    "Mazda"
+    # "Nissan",
+    # "Hyundai",
+    # "Kia",
+    # "Volkswagen",
+    # "Jeep",
+    # "Mazda"
 ]
 
 models = []
@@ -30,7 +30,7 @@ for brand in brands:
         response_json_models = response_models.json()
     except Exception as e:
         print(f"Brand não funcionou: {e}")
-    time.sleep(10)
+    time.sleep(20)
     models_data = response_json_models['data']
 
     for model in models_data:
@@ -48,7 +48,7 @@ for brand in brands:
             response_trims = requests.get(url_trims)
         except Exception as e:
             print(e)
-        time.sleep(10)
+        time.sleep(20)
 
         try:
             trims_data = response_trims.json()['data']
@@ -67,7 +67,7 @@ for brand in brands:
                 response_detail = requests.get(url_detail)
             except Exception as e:
                 print(e)
-            time.sleep(10)
+            time.sleep(20)
 
             try:
                 detail = response_detail.json()
@@ -139,7 +139,7 @@ for brand in brands:
 
             models.append(car_data)
 
-            time.sleep(10)
+            time.sleep(20)
 
 df = pd.DataFrame(models)
 

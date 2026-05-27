@@ -1,5 +1,6 @@
 from playwright.sync_api import sync_playwright
 
+
 class ScrappingWright:
     def __init__(self, open_window: bool = True):
         with sync_playwright() as p:
