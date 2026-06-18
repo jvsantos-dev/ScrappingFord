@@ -10,10 +10,10 @@ senha = os.getenv('SENHA')
 class DataBase:
     def __init__(self, database_url:str = f'postgresql://postgres:{senha}@db.cpjpjsrqblymmnbpiiho.supabase.co:5432/postgres'):
         self.engine = create_engine(database_url)
-        self.SessionLocal = sessionmaker(bind=self.engine)
+        self.session = sessionmaker(bind=self.engine)
 
     def create_car(self, car):
-        session = self.SessionLocal()
+        session = self.session()        
         try:
             session.add(car)
         except Exception as e:
@@ -25,7 +25,7 @@ class DataBase:
 
 
     def execute(self, sql: str):
-        session = self.SessionLocal()
+        session = self.session()
         try:
             result = session.execute(text(sql))
             session.commit()
@@ -40,7 +40,7 @@ class DataBase:
 
 
     def update(self, car_id, car: CarSchema, table):
-        session = self.SessionLocal()
+        session = self.session()
         car_atual = session.get(car, car_id)
         car_atual.marca = car.marca
         car_atual.ano = car.ano
@@ -48,7 +48,7 @@ class DataBase:
     
 
     def delete(self, car_id):
-        session = self.SessionLocal()
+        session = self.session()
         session.delete(car_id)
         session.commit()
         session.close()
