@@ -19,7 +19,8 @@ dependencies = [
     "pydantic (>=2.13.4,<3.0.0)",
     "psycopg2 (>=2.9.12,<3.0.0)",
     "seaborn (>=0.13.2,<0.14.0)",
-    "scikit-learn (>=1.8.0,<2.0.0)"
+    "scikit-learn (>=1.8.0,<2.0.0)",
+    "fastapi (>=0.137.2,<0.138.0)"
 ]
 
 [build-system]
