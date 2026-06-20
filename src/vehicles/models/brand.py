@@ -1,7 +1,9 @@
-from .constants import Base
-from sqlalchemy import String, DateTime, func
+
+from sqlalchemy import String, DateTime, func, ARRAY
 from sqlalchemy.orm import Mapped, mapped_column
 from datetime import datetime
+from .constants import Base
+
 
 class Brand(Base):
     __tablename__ = "brands"

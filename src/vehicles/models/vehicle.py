@@ -1,7 +1,8 @@
-from .constants import Base
+
 from sqlalchemy import String, DateTime, func, ARRAY
 from sqlalchemy.orm import Mapped, mapped_column
 from datetime import datetime
+from .constants import Base
 
 class Vehicle(Base):
     __tablename__ = "vehicles"
